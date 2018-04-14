@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="redboxdigital" translate="label" sortOrder="200">
+            <label>Redbox Digital</label>
+        </tab>
+        <section id="redboxdigital_linkedin" translate="label" type="text" sortOrder="999" showInDefault="1" showInWebsite="0"
+                 showInStore="0">
+            <class>separator-top</class>
+            <label>LinkedIn Config</label>
+            <tab>redboxdigital</tab>
+            <resource>RedboxDigital_Linkedin::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0"
+                   showInStore="0">
+                <label>General</label>
+                <field id="is_visible" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0"
+                       showInStore="0">
+                    <label>Is Visible</label>
+                    <source_model>RedboxDigital\Linkedin\Model\Source\VisibleType</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
