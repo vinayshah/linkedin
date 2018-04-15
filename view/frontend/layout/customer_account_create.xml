@@ -3,7 +3,7 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="form.additional.info">
-            <block class="Magento\Framework\View\Element\Template" name="linkedin_profile"
+            <block class="RedboxDigital\Linkedin\Block\LinkedIn" name="linkedin_profile"
                    template="RedboxDigital_Linkedin::linkedin_profile.phtml"/>
         </referenceContainer>
     </body>
