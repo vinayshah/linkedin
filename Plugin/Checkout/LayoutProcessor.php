@@ -42,7 +42,7 @@ class LayoutProcessor
         ['shippingAddress']['children']['shipping-address-fieldset']['children']['linkedin_profile'] = [
             'component' => 'Magento_Ui/js/form/element/abstract',
             'config' => [
-                'customScope' => 'shippingAddress.linkedin_profile',
+                'customScope' => 'shippingAddress.custom_attributes.linkedin_profile',
                 'template' => 'ui/form/field',
                 'elementTmpl' => 'ui/form/element/input',
                 'id' => 'linkedin-profile'
