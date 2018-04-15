@@ -11,10 +11,14 @@ namespace RedboxDigital\Linkedin\Block\Adminhtml\Order\Create\Form;
 use Magento\Framework\Api\ExtensibleDataObjectConverter;
 use Magento\Framework\Data\Form\Element\AbstractElement;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
+use RedboxDigital\Linkedin\Helper\Data;
 
 
 class Account extends \Magento\Sales\Block\Adminhtml\Order\Create\Form\Account
 {
+    /** @var Data  */
+    protected $helperData;
+
     /**
      * Account constructor.
      * @param \Magento\Backend\Block\Template\Context $context
@@ -26,6 +30,7 @@ class Account extends \Magento\Sales\Block\Adminhtml\Order\Create\Form\Account
      * @param \Magento\Customer\Model\Metadata\FormFactory $metadataFormFactory
      * @param \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository
      * @param ExtensibleDataObjectConverter $extensibleDataObjectConverter
+     * @param Data $helperData
      * @param array $data
      */
     public function __construct(
@@ -38,12 +43,19 @@ class Account extends \Magento\Sales\Block\Adminhtml\Order\Create\Form\Account
         \Magento\Customer\Model\Metadata\FormFactory $metadataFormFactory,
         \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository,
         ExtensibleDataObjectConverter $extensibleDataObjectConverter,
+        Data $helperData,
         array $data = []
     ) {
+        $this->helperData = $helperData;
         parent::__construct($context, $sessionQuote, $orderCreate, $priceCurrency, $formFactory, $dataObjectProcessor,
             $metadataFormFactory, $customerRepository, $extensibleDataObjectConverter, $data);
     }
 
+    /**
+     * @param AbstractElement $element
+     * @return $this
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
     protected function _addAdditionalFormElementData(AbstractElement $element)
     {
         switch ($element->getId()) {
@@ -52,7 +64,8 @@ class Account extends \Magento\Sales\Block\Adminhtml\Order\Create\Form\Account
                 $element->setClass('validate-email admin__control-text');
                 break;
             case 'linkedin_profile':
-                $element->setRequired(1);
+                $element->setRequired($this->helperData->isRequired());
+                $element->setDisabled(!$this->helperData->isVisible());
                 $element->setClass('validate-length maximum-length-250 admin__control-text');
                 break;
         }
