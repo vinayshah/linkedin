@@ -40,31 +40,36 @@ class InstallData implements InstallDataInterface
      */
     public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
-
         $installer = $setup;
         $installer->startSetup();
         $customerSetup = $this->customerSetupFactory->create(['setup' => $setup]);
         $entityTypeId = $customerSetup->getEntityTypeId(\Magento\Customer\Model\Customer::ENTITY);
         $customerSetup->removeAttribute(\Magento\Customer\Model\Customer::ENTITY, "linkedin_profile");
 
-        $customerSetup->addAttribute(\Magento\Customer\Model\Customer::ENTITY, "linkedin_profile", array(
-            "type" => "varchar",
-            "backend" => "",
-            "label" => "Linkedin Profile",
-            "input" => "text",
-            "source" => "",
-            "visible" => true,
-            "required" => false,
-            "default" => "",
-            "frontend" => "",
-            "unique" => false,
-            "note" => ""
+        $customerSetup->addAttribute(
+            \Magento\Customer\Model\Customer::ENTITY,
+            "linkedin_profile",
+            [
+                "type" => "varchar",
+                "backend" => "",
+                "label" => "Linkedin Profile",
+                "input" => "text",
+                "source" => "",
+                "visible" => true,
+                "required" => false,
+                "default" => "",
+                "frontend" => "",
+                "unique" => false,
+                "note" => ""
 
-        ));
+            ]
+        );
 //        $linkedinAttrib = $customerSetup->getAttribute(\Magento\Customer\Model\Customer::ENTITY, "linkedin_profile");
 
-        $linkedinAttrib = $customerSetup->getEavConfig()->getAttribute(\Magento\Customer\Model\Customer::ENTITY,
-            'linkedin_profile');
+        $linkedinAttrib = $customerSetup->getEavConfig()->getAttribute(
+            \Magento\Customer\Model\Customer::ENTITY,
+            'linkedin_profile'
+        );
         $used_in_forms[] = "adminhtml_customer";
         $used_in_forms[] = "checkout_register";
         $used_in_forms[] = "customer_account_create";

@@ -8,7 +8,6 @@
 
 namespace RedboxDigital\Linkedin\Plugin\Checkout;
 
-
 use RedboxDigital\Linkedin\Helper\Data;
 
 class LayoutProcessor

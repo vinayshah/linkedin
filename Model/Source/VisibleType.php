@@ -8,7 +8,6 @@
 
 namespace RedboxDigital\Linkedin\Model\Source;
 
-
 use Magento\Framework\Option\ArrayInterface;
 
 class VisibleType implements ArrayInterface

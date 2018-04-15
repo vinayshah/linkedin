@@ -8,7 +8,6 @@
 
 namespace RedboxDigital\Linkedin\Block;
 
-
 use Magento\Customer\Model\Session;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\View\Element\Template;
@@ -17,10 +16,10 @@ use Magento\Store\Model\ScopeInterface;
 class LinkedIn extends \Magento\Framework\View\Element\Template
 {
     /** @var ScopeConfigInterface */
-    protected $scopeConfig;
+    private $scopeConfig;
 
-    /** @var Session  */
-    protected $customerSession;
+    /** @var Session */
+    private $customerSession;
 
     /**
      * LinkedIn constructor.
@@ -36,7 +35,7 @@ class LinkedIn extends \Magento\Framework\View\Element\Template
         array $data = []
     ) {
         $this->scopeConfig = $scopeConfig;
-        $this->customerSession =$customerSession;
+        $this->customerSession = $customerSession;
         parent::__construct($context, $data);
     }
 
@@ -45,13 +44,13 @@ class LinkedIn extends \Magento\Framework\View\Element\Template
         return $this->scopeConfig->getValue($path, $scope);
     }
 
-    public function getCustomer()
-    {
-        return $this->customerSession->getCustomer();
-    }
-
     public function getLinkedinProfile()
     {
         return $this->getCustomer()->getLinkedinProfile();
+    }
+
+    public function getCustomer()
+    {
+        return $this->customerSession->getCustomer();
     }
 }
